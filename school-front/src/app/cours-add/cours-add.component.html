@@ -1,0 +1,25 @@
+<div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+  <div>
+    <h2>Ajouter des cours</h2>
+    <form #addForm="ngForm" (ngSubmit)="addCour(addForm)" novalidate>
+      <input type="text" id="titre" class="form-control" placeholder="Entrez le titre du cour" required name="titre"
+        [(ngModel)]="cour.titre" #titre="ngModel">
+        <p></p>
+      <textarea type="text" id="contenu" class="form-control" placeholder="Entrez le contenu du cour" required name="contenu"
+            [(ngModel)]="cour.contenu" 
+            rows="10" cols="50" #contenu="ngModel">
+            </textarea>
+            <p></p>
+      <input type="checkbox" id="visibilite" class="form-control" placeholder="Entrez le visibilite du cour" required name="visibilite"
+            [(ngModel)]="cour.visibilite" #contenu="ngModel">
+            <p></p>
+      <button>valider</button>
+    </form>
+    <p>
+      <a href="cours">Liste des cours</a>
+    </p>
+  </div>

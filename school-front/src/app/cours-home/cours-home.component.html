@@ -1,0 +1,44 @@
+<div>
+  <h1>{{titre}}</h1> <button (click)="sessionprovider.deconnexion()">deconnexion</button>
+  <button [routerLink]="['/cours/public']" *ngIf="droit.visiteur">La liste des cours public</button>
+  <button [routerLink]="['/users']" *ngIf="droit.admin">Gestion des utilisateurs</button>
+</div>
+<div>
+  <div>
+    <ul>
+        <li (click)="mescours()">
+          <button>La liste de mes cours</button>
+        </li>
+    </ul>
+    <hr>
+    <div *ngIf="courspublics">
+      <p>Nom de l'auteur : 
+        <input (keyup)="onKey($event)">
+      </p>
+    </div>
+    <table border="2px">
+      <tr>
+        <th>#</th>
+        <th (click)="sortList('titre')">Titre</th>
+        <th  (click)="sortList('contenu')">Contenu</th>
+        <th  (click)="sortList('createdAt')">Date</th>
+        <th *ngIf="!courspublics">Actions</th>
+        <th *ngIf="courspublics" (click)="sortList('user')">Celui qui a publié</th>
+      </tr>
+      <tr *ngFor="let c of cours">
+          <td>{{c.id}}</td>
+          <td>{{c.titre}}</td>
+          <td  [innerHTML]="c.contenu"></td>
+          <td>{{c.createdAt}}</td>
+          <td *ngIf="!courspublics">
+            <button (click)="supprimer(c)">Supprimer</button>
+            <button (click)="publier(c)" *ngIf="c.visibilite">Ne plus publier</button>
+            <button (click)="publier(c)" *ngIf="!c.visibilite">publier</button></td>
+          <td *ngIf="courspublics&&c.user!=null">{{c.user.login}}</td>
+      </tr>
+    </table>
+    
+    <p></p>
+    <button (click)="ajouter()">Ajouter</button>
+  </div>
+</div>

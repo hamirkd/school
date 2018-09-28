@@ -1,0 +1,38 @@
+<div>
+    <h1>{{titre}}</h1> <button (click)="sessionprovider.deconnexion()">deconnexion</button>
+    <button [routerLink]="['/cours']" *ngIf="droit.visiteur">Mes cours</button>
+    <button [routerLink]="['/users']" *ngIf="droit.admin">Gestion des utilisateurs</button>
+</div>
+  <div>
+    <div>
+      <ul>
+          <li (click)="touscourspublics()">
+            <button>La liste des cours publiés</button>
+          </li>
+      </ul>
+      <hr>
+      <div>
+        <p>Nom de l'auteur : 
+          <input (keyup)="onKey($event)">
+        </p>
+      </div>
+      <table border="2px">
+        <tr>
+          <th>#</th>
+          <th (click)="sortList('titre')">Titre</th>
+          <th (click)="sortList('contenu')">Contenu</th>
+          <th (click)="sortList('createdAt')">Date</th>
+          <th (click)="sortList('user')">Celui qui a publié</th>
+        </tr>
+        <tr *ngFor="let c of cours">
+            <td>{{c.id}}</td>
+            <td>{{c.titre}}</td>
+            <td  [innerHTML]="c.contenu"></td>
+            <td>{{c.createdAt}}</td>
+            <td>{{c.user.login}}</td>
+        </tr>
+      </table>
+      <p></p>
+    </div>
+  </div>
+  

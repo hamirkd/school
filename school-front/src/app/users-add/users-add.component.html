@@ -1,0 +1,32 @@
+<div *ngIf="message!=''">
+  {{message}}
+</div>
+<div>
+  <h1><u>{{titre}}</u></h1>
+  <hr>
+  <div>
+    <form #userForm="ngForm" (ngSubmit)="createUser(userForm)" novalidate>
+      Login :
+      <input type="text" id="login" class="form-control" placeholder="Type a user and press enter..." required name="login"
+        [(ngModel)]="newUser.login" #login="ngModel">
+      <p>
+        Mot de passe :
+        <input type="text" id="password" class="form-control"
+         placeholder="Type a user and press enter..." required
+          name="password" [(ngModel)]="newUser.password" #password="ngModel">
+        <p>
+      <p></p>
+      Role : 
+      Admin : <input type="checkbox" name="admin" id="admin" 
+       [(ngModel)]="droit.admin" #admin="ngModel">
+      Utilisateur : <input type="checkbox" name="user" id="user" 
+       [(ngModel)]="droit.user" #user="ngModel">
+      Visiteur : <input type="checkbox" name="visiteur" id="visiteur" 
+       [(ngModel)]="droit.visiteur" #visiteur="ngModel">
+        <p></p>
+          <button>Ajouter un compte</button>
+    </form>
+    <hr>
+    <a [routerLink]="['/users']">La liste des utilisateurs</a>
+  </div>
+</div>

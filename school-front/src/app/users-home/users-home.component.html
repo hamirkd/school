@@ -1,0 +1,40 @@
+<div>
+  <h1>{{titre}}</h1> <button (click)="sessionprovider.deconnexion()">deconnexion</button>
+  <button [routerLink]="['/cours']">La liste des cours</button>
+  <button [routerLink]="['/cours/public']" *ngIf="droit.visiteur">La liste des cours public</button>
+</div>
+<div>
+  <div>
+    <p>Nom de l'utilisateur : 
+      <input (keyup)="onKey($event)">
+    </p>
+    <hr>
+    <table border="2px">
+      <tr>
+        <th>#</th>
+        <th (click)="sortList('login')">Nom</th>
+        <th (click)="sortList('roles')">Role</th>
+        <th (click)="sortList('createdAt')">Date</th>
+        <th>Actions</th>
+        <th>Droits</th>
+      </tr>
+      <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.login}}</td>
+          <td>{{user.roles}}
+          <td>{{user.createdAt}}
+          </td>
+          <td>
+            <button (click)="supprimer(user)">supprimer</button>
+          </td>
+          <td>
+            <button (click)="ajouterOuRetirer(user,'visiteur')">visiteur</button>
+            <button (click)="ajouterOuRetirer(user,'admin')">admin</button>
+            <button (click)="ajouterOuRetirer(user,'user')">user</button>
+          </td>
+      </tr>
+    </table>
+    <p></p>
+    <button (click)="ajouter()">Ajouter</button>
+  </div>
+</div>

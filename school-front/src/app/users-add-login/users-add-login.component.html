@@ -1,0 +1,46 @@
+<div *ngIf="message!=''">
+      {{message}}
+</div>
+<div *ngIf="nouveau_compte==true">
+  <h1><u>Créer un nouveau compte</u></h1>
+  <hr>
+  <div>
+    <form #userForm="ngForm" (ngSubmit)="createUser(userForm)" novalidate>
+        Login : 
+        <input type="text" id="login" class="form-control" placeholder="Type a user and press enter..." 
+              required
+              name="login" [(ngModel)]="newUser.login"
+              #login="ngModel" ><p>
+        Mot de passe : 
+        <input type="text" id="password" class="form-control" placeholder="Type a user and press enter..." 
+              required
+              name="password" [(ngModel)]="newUser.password"
+              #password="ngModel" ><p>
+        <button>Créer mon compte</button>
+    </form>
+    <hr>
+    <a href="#" (click)="dejacompte()">J'ai déjà un compte</a>
+  </div>
+</div>
+<div *ngIf="nouveau_compte==false">
+    <h1><u>Entrez Vos identifiants S.V.P</u></h1>
+    <hr>
+    <div>
+      <form #userForm="ngForm" (ngSubmit)="loginUser(userForm)" novalidate>
+          Login : 
+          <input type="text" id="login" class="form-control" placeholder="Type a user and press enter..." 
+                required
+                name="login" [(ngModel)]="newUser.login"
+                #login="ngModel" ><p></p>
+          Mot de passe : 
+          <input type="text" id="password" class="form-control" placeholder="Type a user and press enter..." 
+                required
+                name="password" [(ngModel)]="newUser.password"
+                #password="ngModel" ><p></p>
+          <button>Se connecter</button>
+      </form>
+      <hr>
+      <a href="#" (click)="dejacompte()">Je veux créer un compte</a>
+    </div>
+  </div>
+  
